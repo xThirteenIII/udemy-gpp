@@ -104,14 +104,20 @@ int main() {
   
   displayMenu();
 
-  char userChoice;
+  char userChoice, lowerUserChoice;
 
   cin >> userChoice;
 
+  lowerUserChoice = static_cast<char>(tolower(userChoice));
+
   //check if choice is valid
   switch (userChoice) {
-    case 'P':
+    case 'p':
       printNumbers();
+      break;
+
+    default:
+      cout << "Unknown selection, please try again" << endl;
   }
 
 
