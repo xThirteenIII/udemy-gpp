@@ -61,8 +61,10 @@ Additional functionality if you wish to extend this program.
 Good luck!
 
 */
+#include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -76,6 +78,10 @@ void displayMenu(){
   cout << "Q - Quit" << endl;
   cout << "\nEnter your choice: " << endl;
 }
+
+// global variables
+//
+const vector<char> validChoices {'p', 'a', 'm', 's', 'l', 'q'};
 
 // Menu functions:
 //
@@ -100,27 +106,66 @@ int displayLargest(){
 }
 
 
-int main() {
+
+bool isAValidChoice(char character){
   
-  displayMenu();
+  for (auto choice:validChoices) {
+    if (character == choice){
+      return true;
+    }
+  }
 
-  char userChoice, lowerUserChoice;
+  return false;
+}
 
-  cin >> userChoice;
+// executes clear cmd, working on bash
+void clearScreen(){
+    system("clear");
+}
 
-  lowerUserChoice = static_cast<char>(tolower(userChoice));
+void makeActionCorrespondingTo(char choice){
 
   //check if choice is valid
-  switch (userChoice) {
+  switch (choice) {
     case 'p':
       printNumbers();
       break;
-
+    case 'a':
+      addNumber();
+      break;
+    case 'm':
+      displayMean();
+      break;
+    case 's':
+      displaySmallest();
+      break;
+    case 'l':
+      displayLargest();
+      break;
+    case 'q':
+      cout << "Goodbye" << endl;
+      break;
     default:
       cout << "Unknown selection, please try again" << endl;
   }
 
+}
 
+int main() {
+  
+  char userChoice, lowerUserChoice;
+
+  do{
+
+    displayMenu();
+    cin >> userChoice;
+    lowerUserChoice = static_cast<char>(tolower(userChoice));
+    clearScreen();
+    makeActionCorrespondingTo(lowerUserChoice);
+  }while(
+    isAValidChoice(lowerUserChoice) && lowerUserChoice != 'q'
+  );
+  
 
 
   return 0;
