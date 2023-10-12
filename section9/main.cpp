@@ -80,13 +80,23 @@ void displayMenu(){
 }
 
 // global variables
-//
 const vector<char> validChoices {'p', 'a', 'm', 's', 'l', 'q'};
 
-// Menu functions:
-//
-void printNumbers(){
+vector<int> vectorOfInt;
 
+// Menu functions:
+void printNumbers(){
+  
+  if (!vectorOfInt.empty()){
+
+    for (auto number:vectorOfInt){
+      cout << "[ " << number << " " << endl;
+    }
+  }else{
+
+    cout << "[] - the list is empty" << endl;
+  }
+  return;
 }
 
 int addNumber(){
