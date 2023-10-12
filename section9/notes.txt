@@ -1,0 +1,2 @@
+-static_cast<type>() is more secure than (type)var_name casting, called C-type casting, because 
+apart from being more clear it throws out errors when compiling if casting is not supported.
