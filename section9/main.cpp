@@ -62,6 +62,7 @@ Good luck!
 
 */
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
@@ -83,6 +84,9 @@ void displayMenu(){
 const vector<char> validChoices {'p', 'a', 'm', 's', 'l', 'q'};
 
 vector<int> vectorOfInt;
+
+float mean = 0.0;
+int smallest, largest = 0;
 
 // Menu functions:
 void printNumbers(){
@@ -115,18 +119,35 @@ void addNumber(){
 
   vectorOfInt.push_back(number);
 
+  cout << "Added " << number << endl;
+
   return;
 }
 
-int displayMean(){
+void displayMean(){
+
+  int sum = 0;
+
+  for (auto number:vectorOfInt){
+    sum += number;
+  }
+
+  mean = static_cast<float>(sum) / vectorOfInt.size();
+
+  cout << "Vector mean value: " << setprecision(2) << mean << endl;
+
+  if (vectorOfInt.empty()){
+
+    cout << "Unable to calculate the mean - no data" << endl;
+    return;
+  }
+}
+
+void displaySmallest(){
   
 }
 
-int displaySmallest(){
-  
-}
-
-int displayLargest(){
+void displayLargest(){
   
 }
 
