@@ -99,8 +99,21 @@ void printNumbers(){
   return;
 }
 
-int addNumber(){
+void addNumber(){
 
+  int number;
+  
+  
+  do {
+    cout << "Type number to add to the list: ";
+    cin >> number;
+  }while(
+    !cin.good()
+  );
+
+  vectorOfInt.push_back(number);
+
+  return;
 }
 
 int displayMean(){
