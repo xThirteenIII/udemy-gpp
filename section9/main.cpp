@@ -89,9 +89,11 @@ void printNumbers(){
   
   if (!vectorOfInt.empty()){
 
+    cout << "[ ";
     for (auto number:vectorOfInt){
-      cout << "[ " << number << " " << endl;
+      cout << number << " ";
     }
+    cout <<"]" << endl;
   }else{
 
     cout << "[] - the list is empty" << endl;
