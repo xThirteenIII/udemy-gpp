@@ -41,21 +41,34 @@ int main(){
   string substring;
   string line_to_print;
 
+
   cout << "Write sentence:" << endl;
   std::getline(cin, sentence);
 
+  // Total spaces to print are sentence.length() - 2.
+  // thats because we start from ____0____ and go to __01210__ and so on.
+  // Total lenght is sentence.length() - 1 and we sub another -1 due to the 
+  // first element printed.
+  int sentence_length = static_cast<int>(sentence.length());
+  int total_blankspaces = sentence_length * 2 - 2; // note: this will always be even 
+
   //idea is to save from 0 to sentence[i-1], then reverse it, concat with
   // sentence[i] and lastly with sentence_reversed
-  for (int i = 0; i < static_cast<int>(sentence.length()); i++){
+  for (int i = 0; i < sentence_length; i++){
+    string spaces_left_and_right (total_blankspaces/2, ' ');
     if (i == 0){
-      line_to_print = sentence[0];
+      line_to_print = spaces_left_and_right + sentence[0] + spaces_left_and_right;
+      cout << line_to_print << endl;
+      total_blankspaces -= 2;
       continue;
     }
-    substring = sentence.substr(0, i - 1);
+    // note: substr goes from 0 to i - 1 actually
+    substring = sentence.substr(0, i);
     line_to_print = substring + sentence.at(i);
     reverse(substring.begin(), substring.end());
     line_to_print += substring;
-    cout << line_to_print << endl;
+    cout << spaces_left_and_right + line_to_print + spaces_left_and_right<< endl;
+    total_blankspaces -= 2;
   }
 
   return 0;
