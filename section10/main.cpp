@@ -63,6 +63,17 @@ string decrypt(string msg){
 
   int letterIndex;
   string decrypted_msg;
+
+  for (char ch:msg){
+    
+    letterIndex = key.find_first_of(ch);
+    if (letterIndex == -1){
+      decrypted_msg+=ch;
+      continue;
+    }
+    decrypted_msg += alphabet.at(letterIndex);
+  }
+
   return decrypted_msg;
 }
 
@@ -75,7 +86,13 @@ int main() {
 
     getline(cin, original_msg);
 
-    cout << "Encrypted message: " << encrypt(original_msg) << endl;
+    string encrypted_msg = encrypt(original_msg);
+
+    cout << "Encrypted message: " << encrypted_msg << endl;
+
+    cout << "Decrypted message: " << decrypt(encrypted_msg) << endl;
+
+    cout << "Goodbyessss" << endl;
 
     
     return 0;
