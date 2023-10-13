@@ -126,6 +126,12 @@ void addNumber(){
 
 void displayMean(){
 
+  if (vectorOfInt.empty()){
+
+    cout << "Unable to calculate the mean - no data" << endl;
+    return;
+  }
+
   int sum = 0;
 
   for (auto number:vectorOfInt){
@@ -135,20 +141,46 @@ void displayMean(){
   mean = static_cast<float>(sum) / vectorOfInt.size();
 
   cout << "Vector mean value: " << setprecision(2) << mean << endl;
+  return;
 
-  if (vectorOfInt.empty()){
-
-    cout << "Unable to calculate the mean - no data" << endl;
-    return;
-  }
-}
-
-void displaySmallest(){
-  
 }
 
 void displayLargest(){
+
+  int max = 0;
   
+  if (vectorOfInt.empty()){
+    cout << "Unable to determine the smallest number - list is empty" << endl;
+    return;
+  }
+
+  for (auto number:vectorOfInt){
+    if (number > max){
+      max = number;
+    }
+  }
+
+  cout << "Largest number in the list is: " << max << endl;
+  return;
+}
+
+void displaySmallest(){
+
+  int min = 0;
+
+  if (vectorOfInt.empty()){
+    cout << "Unable to determine the largest number - list is empty" << endl;
+    return;
+  }
+
+  for (auto number:vectorOfInt){
+    if (number < min) {
+      min = number;
+    }
+  }
+
+  cout << "Smallest number in the list is: " << min << endl;
+  return;
 }
 
 
