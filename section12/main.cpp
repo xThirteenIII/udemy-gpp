@@ -67,6 +67,8 @@ int main() {
     
     cout << endl;
 
+    delete results;
+
     return 0;
 }
 
