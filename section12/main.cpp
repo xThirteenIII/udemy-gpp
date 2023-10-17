@@ -36,9 +36,13 @@
    Result: [ 10 20 30 40 50 20 40 60 80 100 30 60 90 120 150 ]
 */
   
+#include <cstddef>
 #include <iostream>
 
 using namespace std;
+
+int *apply_all(int[], size_t, int [], size_t);
+void print(int[], size_t);
 
 
 
@@ -66,3 +70,28 @@ int main() {
     return 0;
 }
 
+int* apply_all(int arr1[], size_t size1, int arr2[], size_t size2){
+  
+  int* arr3 {nullptr};
+  arr3 = new int[size1*size2];
+
+  for (size_t i = 0; i < size2; i++){
+    for (size_t j=0; j<size1; j++){
+
+      *(arr3+(i*size1+j)) = arr1[j] * arr2[i];
+    }
+  }
+
+  return arr3;
+}
+
+void print(int arr[], size_t size){
+
+  // doesn't check if array is empty
+  
+  cout << "[";
+  for (size_t i=0; i< size; i++){
+    cout << *(arr+i) << " ";
+  }
+  cout << "]";
+}
