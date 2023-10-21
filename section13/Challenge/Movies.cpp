@@ -7,7 +7,9 @@
  *
  * ***************************************************************/
 #include "Movies.h"
+#include <cstddef>
 #include <iostream>
+#include <ostream>
 
 /*************************************************************************
    Movies no-args constructor
@@ -30,8 +32,14 @@ Movies::~Movies() {}
   and add that movie object to the movies vector and return true
   *********************************************************************/
 bool Movies::add_movie(std::string name, std::string rating, int watched) {
-  // you implement this method
-  return false;
+  for (size_t i = 0; i < movies.size(); i++) {
+    if (movies.at(i).get_name() == name) {
+      return false;
+    }
+  }
+  // Is this correct? how to do it better?
+  movies.push_back(Movie(name, rating, watched));
+  return true;
 }
 
 /*************************************************************************
@@ -46,7 +54,12 @@ bool Movies::add_movie(std::string name, std::string rating, int watched) {
    provided exists to increment
    *********************************************************************/
 bool Movies::increment_watched(std::string name) {
-  // you implement this method
+  for (size_t i = 0; i < movies.size(); i++) {
+    if (movies.at(i).get_name() == name) {
+      movies.at(i).increment_watched();
+      return true;
+    }
+  }
   return false;
 }
 
@@ -58,5 +71,13 @@ bool Movies::increment_watched(std::string name) {
     object displays itself
     *********************************************************************/
 void Movies::display() const {
-  // You implement this method
+  if (movies.empty()) {
+    std::cout << "Sorry, no movies to display" << std::endl;
+  } else {
+    std::cout << "\n===================================" << std::endl;
+    for (size_t i = 0; i < movies.size(); i++) {
+      movies.at(i).display();
+    }
+    std::cout << "\n===================================" << std::endl;
+  }
 }
